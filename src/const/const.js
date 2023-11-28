@@ -17,15 +17,15 @@ export const data = [
       "dates": [
         {
           "start_date": "2023-11-19",
-          "end_date": "2023-11-25"
+          "end_date": "2023-12-25"
         },
         {
           "start_date": "2023-11-19",
-          "end_date": "2023-11-25"
+          "end_date": "2023-12-25"
         },
         {
           "start_date": "2023-11-19",
-          "end_date": "2023-11-25"
+          "end_date": "2023-12-25"
         }
       ],
       "discount": 100,
@@ -51,11 +51,11 @@ export const data = [
       "dates": [
         {
           "start_date": "2023-11-19",
-          "end_date": "2023-11-25"
+          "end_date": "2023-12-25"
         },
         {
           "start_date": "2023-11-19",
-          "end_date": "2023-11-25"
+          "end_date": "2023-12-25"
         }
       ],
       "discount": 100,
@@ -223,7 +223,7 @@ export const data = [
       "dates": [
         {
           "start_date": "2023-11-19",
-          "end_date": "2023-11-25"
+          "end_date": "2023-12-25"
         }
       ],
       "discount": 0,
@@ -679,7 +679,7 @@ export const data = [
       "dates": [
         {
           "start_date": "2023-11-12",
-          "end_date": "2023-11-25"
+          "end_date": "2023-12-25"
         }
       ],
       "discount": 0,
@@ -847,7 +847,7 @@ export const data = [
       "dates": [
         {
           "start_date": "2023-11-12",
-          "end_date": "2023-11-25"
+          "end_date": "2023-12-25"
         }
       ],
       "discount": 25,
@@ -1399,7 +1399,7 @@ export const data = [
       "dates": [
         {
           "start_date": "2023-10-27",
-          "end_date": "2023-11-25"
+          "end_date": "2023-12-25"
         }
       ],
       "discount": 0,

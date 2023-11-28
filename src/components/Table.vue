@@ -4,6 +4,7 @@ const formatDate = (date) => {
   const options = { day: "numeric", month: "short" };
   return new Intl.DateTimeFormat("ru-RU", options).format(new Date(date));
 };
+
 </script>
 <template>
   <table class="table__container">
@@ -37,6 +38,7 @@ const formatDate = (date) => {
         <th class="table__field table__field--sort" id="inner_comment">
           inner_comment
         </th>
+        <th class="table__field table__field--sort" id="ends_in">ends in</th>
       </tr>
     </thead>
     <tbody class="table__tbody">
@@ -57,7 +59,10 @@ const formatDate = (date) => {
         <td>{{ item.phone }}</td>
         <td class="dates">
           <tr v-for="(date, index) in item.dates" :key="index">
-            <td>{{ formatDate(date.start_date) }} - {{ formatDate(date.end_date) }}</td>
+            <td>
+              {{ formatDate(date.start_date) }} -
+              {{ formatDate(date.end_date) }}
+            </td>
           </tr>
         </td>
         <td>{{ item.discount }}</td>
@@ -66,6 +71,17 @@ const formatDate = (date) => {
         <td>{{ item.pay_status }}</td>
         <td class="courier_comment">{{ item.courier_comment }}</td>
         <td class="inner_comment">{{ item.inner_comment }}</td>
+        <td class="ends_in">
+          <tr v-for="(date, index) in item.dates" :key="index">
+            <td>
+              Заканчивается через:
+              {{
+                Math.ceil((new Date(date.end_date) - new Date()) / (1000 * 60 * 60 * 24))
+              }}
+              дней
+            </td>
+          </tr>
+        </td>
       </tr>
     </tbody>
     <tfoot></tfoot>
@@ -90,7 +106,7 @@ const formatDate = (date) => {
   border: 1px solid #646cff;
 }
 .client_name {
-  width:70px;
+  width: 70px;
 }
 .diets {
   & tr td {
@@ -112,8 +128,9 @@ const formatDate = (date) => {
     border: none;
   }
 }
-.dates {
-  width: 150px;
+.dates,
+.ends_in {
+  width: 120px;
   & tr td {
     width: 100%;
     border: none;
