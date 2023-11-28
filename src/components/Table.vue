@@ -5,6 +5,31 @@ const formatDate = (date) => {
   return new Intl.DateTimeFormat("ru-RU", options).format(new Date(date));
 };
 
+const getStatus = (start, end) => {
+  const currentDay = new Date();
+  const startDay = new Date(start);
+  const endDay = new Date(end);
+  let message = "";
+  let endsIn;
+  if (startDay - currentDay < 0) {
+    endsIn = Math.ceil((new Date(endDay) - new Date()) / (1000 * 60 * 60 * 24));
+    if (endsIn > 2) {
+      message = "Заканчивается через " + endsIn + " дней";
+    } else if (endsIn == 1) {
+      message = `Заканчивается завтра`;
+    } else if (endsIn == 0) {
+      message = `Заканчивается сегодня`;
+    } else if (endsIn < 0) {
+      message = "Закончилось " + Math.abs(endsIn) + " дней назад";
+    }
+  } else if (startDay - currentDay > 0) {
+    endsIn = Math.ceil(
+      (new Date(startDay) - new Date()) / (1000 * 60 * 60 * 24)
+    );
+    message = "Начинается через " + endsIn + " дней";
+  }
+  return message;
+};
 </script>
 <template>
   <table class="table__container">
@@ -73,13 +98,9 @@ const formatDate = (date) => {
         <td class="inner_comment">{{ item.inner_comment }}</td>
         <td class="ends_in">
           <tr v-for="(date, index) in item.dates" :key="index">
-            <td>
-              Заканчивается через:
-              {{
-                Math.ceil((new Date(date.end_date) - new Date()) / (1000 * 60 * 60 * 24))
-              }}
-              дней
-            </td>
+            {{
+              getStatus(date.start_date, date.end_date)
+            }}
           </tr>
         </td>
       </tr>
@@ -96,11 +117,11 @@ const formatDate = (date) => {
 .table__thead {
   cursor: pointer;
   height: 30px;
-
-  background-color: transparent;
+  color: white;
+  background-color: #646cff;
 }
 .table__field {
-  border: 3px solid #646cff;
+  border: 1px solid rgb(175, 173, 173);
 }
 .table__tbody td {
   border: 1px solid #646cff;

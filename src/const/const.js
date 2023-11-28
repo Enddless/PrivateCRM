@@ -17,7 +17,7 @@ export const data = [
       "dates": [
         {
           "start_date": "2023-11-19",
-          "end_date": "2023-12-25"
+          "end_date": "2023-11-29"
         },
         {
           "start_date": "2023-11-19",
