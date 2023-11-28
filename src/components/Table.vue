@@ -1,5 +1,8 @@
 <script setup>
 import { data } from "../const/const";
+import Modal from "./Modal.vue";
+import { ref } from "vue";
+
 const formatDate = (date) => {
   const options = { day: "numeric", month: "short" };
   return new Intl.DateTimeFormat("ru-RU", options).format(new Date(date));
@@ -30,6 +33,11 @@ const getStatus = (start, end) => {
   }
   return message;
 };
+
+let openModal = ref(false);
+const openModalSorting = () => {
+  openModal.value = !openModal.value;
+};
 </script>
 <template>
   <table class="table__container">
@@ -39,37 +47,31 @@ const getStatus = (start, end) => {
     <thead class="table__thead">
       <tr class="table__tr">
         <th class="table__field" id="o_id">o_id</th>
-        <th class="table__field" id="client_name">
-          client_name
-        </th>
+        <th class="table__field" id="client_name">client_name</th>
         <th class="table__field" id="diets">diets</th>
         <th class="table__field" id="tariff">tariff</th>
         <th class="table__field" id="address">address</th>
         <th class="table__field" id="phone">phone</th>
         <th class="table__field" id="dates">dates</th>
         <th class="table__field" id="discount">discount</th>
-        <th class="table__field" id="order_sum">
-          order_sum
+        <th class="table__field" id="order_sum">order_sum</th>
+        <th class="table__field" id="order_payed">order_payed</th>
+        <th class="table__field" id="pay_status">pay_status</th>
+        <th class="table__field" id="courier_comment">courier_comment</th>
+        <th class="table__field" id="inner_comment">inner_comment</th>
+        <th
+          class="table__field table__field--sort"
+          id="ends_in"
+          @click="openModalSorting"
+        >
+          ends in
         </th>
-        <th class="table__field" id="order_payed">
-          order_payed
-        </th>
-        <th class="table__field" id="pay_status">
-          pay_status
-        </th>
-        <th class="table__field" id="courier_comment">
-          courier_comment
-        </th>
-        <th class="table__field" id="inner_comment">
-          inner_comment
-        </th>
-        <th class="table__field table__field--sort" id="ends_in">ends in</th>
       </tr>
     </thead>
     <tbody class="table__tbody">
       <tr v-for="item in data" :key="item.o_id">
         <td>{{ item.o_id }}</td>
-        <td class="client_name" >{{ item.client_name }}</td>
+        <td class="client_name">{{ item.client_name }}</td>
         <td class="diets">
           <tr v-for="diet in item.diets" :key="diet">
             <td>{{ diet }}</td>
@@ -105,9 +107,14 @@ const getStatus = (start, end) => {
     </tbody>
     <tfoot></tfoot>
   </table>
+
+  <Modal v-if="openModal" data="{{data}}" />
 </template>
 
 <style lang="scss" scoped>
+table {
+  position: relative;
+}
 .table__container {
   border: 1px solid #646cff;
   border-collapse: collapse;
