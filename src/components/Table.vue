@@ -38,29 +38,29 @@ const getStatus = (start, end) => {
     </caption>
     <thead class="table__thead">
       <tr class="table__tr">
-        <th class="table__field table__field--sort" id="o_id">o_id</th>
-        <th class="table__field table__field--sort" id="client_name">
+        <th class="table__field" id="o_id">o_id</th>
+        <th class="table__field" id="client_name">
           client_name
         </th>
-        <th class="table__field table__field--sort" id="diets">diets</th>
-        <th class="table__field table__field--sort" id="tariff">tariff</th>
-        <th class="table__field table__field--sort" id="address">address</th>
-        <th class="table__field table__field--sort" id="phone">phone</th>
-        <th class="table__field table__field--sort" id="dates">dates</th>
-        <th class="table__field table__field--sort" id="discount">discount</th>
-        <th class="table__field table__field--sort" id="order_sum">
+        <th class="table__field" id="diets">diets</th>
+        <th class="table__field" id="tariff">tariff</th>
+        <th class="table__field" id="address">address</th>
+        <th class="table__field" id="phone">phone</th>
+        <th class="table__field" id="dates">dates</th>
+        <th class="table__field" id="discount">discount</th>
+        <th class="table__field" id="order_sum">
           order_sum
         </th>
-        <th class="table__field table__field--sort" id="order_payed">
+        <th class="table__field" id="order_payed">
           order_payed
         </th>
-        <th class="table__field table__field--sort" id="pay_status">
+        <th class="table__field" id="pay_status">
           pay_status
         </th>
-        <th class="table__field table__field--sort" id="courier_comment">
+        <th class="table__field" id="courier_comment">
           courier_comment
         </th>
-        <th class="table__field table__field--sort" id="inner_comment">
+        <th class="table__field" id="inner_comment">
           inner_comment
         </th>
         <th class="table__field table__field--sort" id="ends_in">ends in</th>
@@ -69,7 +69,7 @@ const getStatus = (start, end) => {
     <tbody class="table__tbody">
       <tr v-for="item in data" :key="item.o_id">
         <td>{{ item.o_id }}</td>
-        <td class="client_name">{{ item.client_name }}</td>
+        <td class="client_name" >{{ item.client_name }}</td>
         <td class="diets">
           <tr v-for="diet in item.diets" :key="diet">
             <td>{{ diet }}</td>
@@ -98,9 +98,7 @@ const getStatus = (start, end) => {
         <td class="inner_comment">{{ item.inner_comment }}</td>
         <td class="ends_in">
           <tr v-for="(date, index) in item.dates" :key="index">
-            {{
-              getStatus(date.start_date, date.end_date)
-            }}
+            <td>{{ getStatus(date.start_date, date.end_date) }}</td>
           </tr>
         </td>
       </tr>
